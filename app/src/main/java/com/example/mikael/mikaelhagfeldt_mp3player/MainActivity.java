@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity
         this.fieldListView = findViewById(R.id.id_listView);
         this.fieldArrayList = new ArrayList<>();
 
-
+        getMusic();
     }
 
     /*
