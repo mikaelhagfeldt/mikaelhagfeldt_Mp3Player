@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -25,6 +27,15 @@ public class MainActivity extends AppCompatActivity
         this.fieldArrayList = new ArrayList<>();
 
         getMusic();
+
+        Collections.sort(this.fieldArrayList, new Comparator<Music>()                               // Listar låtarna i alfabetisk ordning
+        {
+            @Override
+            public int compare(Music music, Music t1)
+            {
+                return music.getFieldName().compareTo(t1.getFieldName());
+            }
+        });
     }
 
     /*
