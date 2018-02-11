@@ -4,7 +4,6 @@ import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
@@ -50,23 +49,22 @@ public class MainActivity extends AppCompatActivity
     public void getMusic()
     {
         ContentResolver contentResolver = getContentResolver();                                     // Från Developer Android
-        Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+        Uri uri = android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         Cursor cursor = contentResolver.query(uri, null, null, null, null);
 
         if (cursor.moveToFirst() && cursor != null)
         {
 
-            int intColumn1 = cursor.getColumnIndex(MediaStore.Audio.Media.TITLE);                   // Hämtar data från kolumner
-            int intColumn2 = cursor.getColumnIndex(MediaStore.Audio.Media._ID);
-            int intColumn3 = cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
+            int intColumn1 = cursor.getColumnIndex(android.provider.MediaStore.Audio.Media.TITLE);                   // Hämtar data från kolumner
+            int intColumn2 = cursor.getColumnIndex(android.provider.MediaStore.Audio.Media._ID);
+            int intColumn3 = cursor.getColumnIndex(android.provider.MediaStore.Audio.Media.ARTIST);
 
             do
             {
-                int intID = cursor.getInt(intColumn2);                                              // Lägger till musik i arraylist
+                long intID = cursor.getLong(intColumn2);                                              // Lägger till musik i arraylist
                 String strTitle = cursor.getString(intColumn1);
                 String strArtist = cursor.getString(intColumn3);
-                Music newMusic = new Music(strTitle, strArtist, intID);
-                this.fieldArrayList.add(newMusic);
+                this.fieldArrayList.add(new Music(strTitle, strArtist, intID));
             }
             while (cursor.moveToNext());
         }

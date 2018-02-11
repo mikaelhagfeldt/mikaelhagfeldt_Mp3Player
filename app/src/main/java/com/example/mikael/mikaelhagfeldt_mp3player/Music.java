@@ -12,9 +12,9 @@ public class Music
 {
     private String fieldName;
     private String fieldArtist;
-    private int fieldID;
+    private long fieldID;
 
-    public Music(String fieldName, String fieldArtist, int fieldID)
+    public Music(String fieldName, String fieldArtist, long fieldID)
     {
         this.fieldName = fieldName;
         this.fieldArtist = fieldArtist;
@@ -46,7 +46,7 @@ public class Music
         return fieldArtist;
     }
 
-    public int getFieldID()
+    public long getFieldID()
     {
         return fieldID;
     }
