@@ -38,12 +38,16 @@ public class Adapter extends BaseAdapter
     @Override
     public Object getItem(int i)
     {
+        // Behövs inte?
+
         return null;
     }
 
     @Override
     public long getItemId(int i)
     {
+        // Behövs inte??
+
         return 0;
     }
 
@@ -52,6 +56,11 @@ public class Adapter extends BaseAdapter
     {
         LinearLayout localLinearLayout = (LinearLayout)fieldLayoutInflator.inflate(R.layout.music, parent, false);
         TextView localTextViewName = localLinearLayout.findViewById(R.id.id_musicTitle);
-        TextView localTextViewArtist =
+        TextView localTextViewArtist = localLinearLayout.findViewById(R.id.id_musicArtist);
+        Music localMusic = this.fieldMusicArrayList.get(i);
+        localTextViewName.setText(localMusic.getFieldName());
+        localTextViewArtist.setText(localMusic.getFieldArtist());
+        localLinearLayout.setTag(i);
+        return localLinearLayout;
     }
 }
