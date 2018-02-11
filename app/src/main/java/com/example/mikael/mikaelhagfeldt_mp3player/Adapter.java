@@ -54,7 +54,7 @@ public class Adapter extends BaseAdapter
     @Override
     public View getView(int i, View view, ViewGroup viewGroup)
     {
-        LinearLayout localLinearLayout = (LinearLayout)fieldLayoutInflator.inflate(R.layout.music, parent, false);
+        LinearLayout localLinearLayout = (LinearLayout)fieldLayoutInflator.inflate(R.layout.music, viewGroup, false);
         TextView localTextViewName = localLinearLayout.findViewById(R.id.id_musicTitle);
         TextView localTextViewArtist = localLinearLayout.findViewById(R.id.id_musicArtist);
         Music localMusic = this.fieldMusicArrayList.get(i);

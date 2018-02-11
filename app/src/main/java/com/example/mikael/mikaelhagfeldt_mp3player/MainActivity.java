@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity
                 return music.getFieldName().compareTo(t1.getFieldName());
             }
         });
+
+        Adapter localAdapter = new Adapter(this, this.fieldArrayList);
+        this.fieldListView.setAdapter(localAdapter);
     }
 
     /*
