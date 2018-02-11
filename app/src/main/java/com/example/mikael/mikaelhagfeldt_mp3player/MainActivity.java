@@ -1,8 +1,11 @@
 package com.example.mikael.mikaelhagfeldt_mp3player;
 
+import android.Manifest;
 import android.content.ContentResolver;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
@@ -21,6 +24,15 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)                                                             // Jag måste be om tillåtelse?
+        {
+            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+            {
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
+                return;
+            }
+        }
 
         this.fieldListView = findViewById(R.id.id_listView);
         this.fieldArrayList = new ArrayList<>();
