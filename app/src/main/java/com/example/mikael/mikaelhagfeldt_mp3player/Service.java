@@ -25,7 +25,7 @@ public class Service extends android.app.Service implements MediaPlayer.OnPrepar
 {
     private ArrayList<Music> fieldList;                                                             // Lista med låtar
     private MediaPlayer fieldMediaPlayer;                                                           // Min Media Player klass
-    private int fieldMusicIndex;                                                                         // Låtens index i listan
+    private int fieldMusicIndex;                                                                    // Låtens index i listan
 
     @Nullable
     @Override
@@ -46,12 +46,13 @@ public class Service extends android.app.Service implements MediaPlayer.OnPrepar
         this.fieldMediaPlayer = new MediaPlayer();
 
         this.fieldMusicIndex = 0; // Från början, index 0
+
+        establishMP3Player();
     }
 
     @Override
     public void onCompletion(MediaPlayer mediaPlayer)
     {
-        // Behövs inte?
     }
 
     @Override
@@ -63,7 +64,6 @@ public class Service extends android.app.Service implements MediaPlayer.OnPrepar
     @Override
     public void onPrepared(MediaPlayer mediaPlayer)
     {
-        // Behövs inte?
     }
 
     /*
@@ -74,6 +74,12 @@ public class Service extends android.app.Service implements MediaPlayer.OnPrepar
     {
         this.fieldMediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK); // Från Developer Android, WAKE LOCK gör så att uppspelning i bakgrunden är möjlig.
         this.fieldMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);                        // Enligt Developer Android gammal kod, men finner ingen work around.
+
+        // Kopplar de implementerade metoderna till "state of media player"
+
+        this.fieldMediaPlayer.setOnPreparedListener(this);
+        this.fieldMediaPlayer.setOnCompletionListener(this);
+        this.fieldMediaPlayer.setOnErrorListener(this);
     }
 
 
