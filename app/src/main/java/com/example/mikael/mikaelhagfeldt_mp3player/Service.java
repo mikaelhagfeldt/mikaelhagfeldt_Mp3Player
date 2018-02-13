@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.IBinder;
+import android.os.PowerManager;
 import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
@@ -62,16 +63,18 @@ public class Service extends android.app.Service implements MediaPlayer.OnPrepar
     @Override
     public void onPrepared(MediaPlayer mediaPlayer)
     {
-        // Behövs inte
+        // Behövs inte?
     }
 
     /*
-        Lägger till nödvändiga features till vår MediaPlayer för att få allting att fungera.
+        Lägger till nödvändiga "features" till vår MediaPlayer för att få allting att fungera.
      */
 
     public void establishMP3Player()
     {
-        this.fieldMediaPlayer.setWakeMode(getApplicationContext());                                 // Från Developer Android
-        this.fieldMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        this.fieldMediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK); // Från Developer Android, WAKE LOCK gör så att uppspelning i bakgrunden är möjlig.
+        this.fieldMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);                        // Enligt Developer Android gammal kod, men finner ingen work around.
     }
+
+
 }
