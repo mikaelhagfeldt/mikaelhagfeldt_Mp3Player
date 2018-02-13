@@ -1,6 +1,7 @@
 package com.example.mikael.mikaelhagfeldt_mp3player;
 
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -49,7 +50,7 @@ public class Service extends android.app.Service implements MediaPlayer.OnPrepar
     @Override
     public void onCompletion(MediaPlayer mediaPlayer)
     {
-
+        // Behövs inte?
     }
 
     @Override
@@ -61,6 +62,16 @@ public class Service extends android.app.Service implements MediaPlayer.OnPrepar
     @Override
     public void onPrepared(MediaPlayer mediaPlayer)
     {
+        // Behövs inte
+    }
 
+    /*
+        Lägger till nödvändiga features till vår MediaPlayer för att få allting att fungera.
+     */
+
+    public void establishMP3Player()
+    {
+        this.fieldMediaPlayer.setWakeMode(getApplicationContext());                                 // Från Developer Android
+        this.fieldMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
     }
 }
