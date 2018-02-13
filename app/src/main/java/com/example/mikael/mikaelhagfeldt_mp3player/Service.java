@@ -50,6 +50,15 @@ public class Service extends android.app.Service implements MediaPlayer.OnPrepar
         establishMP3Player();
     }
 
+    /*
+        En metod som hämtar listan på låtar som skapas från MAIN.
+     */
+
+    public void receiveListFromMain(ArrayList<Music> paramList)
+    {
+        this.fieldList = paramList;
+    }
+
     @Override
     public void onCompletion(MediaPlayer mediaPlayer)
     {
@@ -81,6 +90,8 @@ public class Service extends android.app.Service implements MediaPlayer.OnPrepar
         this.fieldMediaPlayer.setOnCompletionListener(this);
         this.fieldMediaPlayer.setOnErrorListener(this);
     }
+
+
 
 
 }
