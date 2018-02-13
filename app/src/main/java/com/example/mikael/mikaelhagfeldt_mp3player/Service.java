@@ -31,6 +31,21 @@ public class Service extends android.app.Service implements MediaPlayer.OnPrepar
         return null;
     }
 
+    /*
+        Verkar inte vara samma onCreate() som i Main. Enligt post på stack så måste man använda metod
+        från Service, instansiera MediaPlayer klassen och skapa en form av counter för att hålla koll
+        på aktuellt index.
+     */
+
+    public void onCreate()
+    {
+        super.onCreate();
+        this.fieldMediaPlayer = new MediaPlayer();
+
+        // Hur får in counter?
+
+    }
+
     @Override
     public void onCompletion(MediaPlayer mediaPlayer)
     {
