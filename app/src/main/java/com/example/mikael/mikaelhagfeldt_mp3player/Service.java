@@ -23,6 +23,7 @@ public class Service extends android.app.Service implements MediaPlayer.OnPrepar
 {
     private ArrayList<Music> fieldList;                                                             // Lista med låtar
     private MediaPlayer fieldMediaPlayer;                                                           // Min Media Player klass
+    private int fieldMusicIndex;                                                                         // Låtens index i listan
 
     @Nullable
     @Override
@@ -42,8 +43,7 @@ public class Service extends android.app.Service implements MediaPlayer.OnPrepar
         super.onCreate();
         this.fieldMediaPlayer = new MediaPlayer();
 
-        // Hur får in counter?
-
+        this.fieldMusicIndex = 0; // Från början, index 0
     }
 
     @Override
