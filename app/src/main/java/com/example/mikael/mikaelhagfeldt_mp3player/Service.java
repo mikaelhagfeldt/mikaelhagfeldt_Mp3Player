@@ -91,7 +91,19 @@ public class Service extends android.app.Service implements MediaPlayer.OnPrepar
         this.fieldMediaPlayer.setOnErrorListener(this);
     }
 
+    /*
+        Implementerar ett "binder objekt" för att agera som brygga mellan MAIN och Service klassen.
+        Använder "inre klass" för detta. Använder denna klass från MAIN.
+        Kodsnutt från YouTube.
+     */
 
+    public class Binder extends android.os.Binder
+    {
+        Service getService()
+        {
+            return Service.this;
+        }
+    }
 
 
 }
