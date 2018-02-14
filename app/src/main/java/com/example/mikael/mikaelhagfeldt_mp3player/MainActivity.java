@@ -1,13 +1,16 @@
 package com.example.mikael.mikaelhagfeldt_mp3player;
 
 import android.Manifest;
+import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
@@ -54,6 +57,25 @@ public class MainActivity extends AppCompatActivity
 
         Adapter localAdapter = new Adapter(this, this.fieldArrayList);
         this.fieldListView.setAdapter(localAdapter);
+    }
+
+    private ServiceConnection serviceConnection = new ServiceConnection()
+    {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder)
+        {
+            Binder musicBinder = (Binder) iBinder;
+
+
+
+
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName)
+        {
+
+        }
     }
 
     /*
