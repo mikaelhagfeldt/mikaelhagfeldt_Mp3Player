@@ -64,19 +64,18 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder)
         {
-            Binder musicBinder = (Binder) iBinder;
-
-
-
-
+            Service.Binder binder = (Service.Binder) iBinder;
+            fieldService = binder.getService();
+            fieldService.receiveListFromMain(fieldArrayList);
+            fieldIsBound = true;
         }
 
         @Override
         public void onServiceDisconnected(ComponentName componentName)
         {
-
+            fieldIsBound = false;
         }
-    }
+    };
 
     /*
         En metod för att hämta musikfilerna med ContentResolver, och använda Cursor
