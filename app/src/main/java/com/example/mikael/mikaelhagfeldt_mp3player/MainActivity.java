@@ -3,6 +3,7 @@ package com.example.mikael.mikaelhagfeldt_mp3player;
 import android.Manifest;
 import android.content.ComponentName;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
@@ -58,6 +59,30 @@ public class MainActivity extends AppCompatActivity
         Adapter localAdapter = new Adapter(this, this.fieldArrayList);
         this.fieldListView.setAdapter(localAdapter);
     }
+
+    /*
+        En metod som ser till att när vår MAIN startar så startar även vår Service, därav
+        använder onStart() metoden. Ifall vår intent är lika med null så måste vi skapa oss en
+        ny.
+     */
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        if (this.fieldIntent == null)
+        {
+            this.fieldIntent = new Intent(this, Service.class);
+            bindService(this.fieldIntent, serviceConnection, Context.BIND_AUTO_CREATE);
+            startService(this.fieldIntent);
+        }
+    }
+
+    /*
+        Metoden börjar med att få åtkomst till listan av låtar, och sätter en boolean till
+        antingen true eller false beroende på hur det gick. Kort och gott kan man säga att
+        metoden informerar om det gick att ansluta MAIN till Service eller om det inte gick.
+     */
 
     private ServiceConnection serviceConnection = new ServiceConnection()
     {
