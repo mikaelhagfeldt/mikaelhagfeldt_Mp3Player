@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
 public class Service extends android.app.Service implements MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener, MediaPlayer.OnCompletionListener   // Developer Android
 {
+    private IBinder fieldIBinder = new Binder();                                                    // Vår "binder" som kopplas till MAIN.
     private ArrayList<Music> fieldList;                                                             // Lista med låtar
     private MediaPlayer fieldMediaPlayer;                                                           // Min Media Player klass
     private int fieldMusicIndex;                                                                    // Låtens index i listan
@@ -31,7 +32,20 @@ public class Service extends android.app.Service implements MediaPlayer.OnPrepar
     @Override
     public IBinder onBind(Intent intent)
     {
-        return null;
+        return this.fieldIBinder;                                                                   // Agerar som getter metod för "binder"
+    }
+
+    /*
+        Måste ha denna metod för att göra sig av med onödig data då kopplingen till Service
+        går bort. Dvs när man stänger av applikationen.
+     */
+
+    @Override
+    public boolean onUnbind(Intent intent)
+    {
+        this.fieldMediaPlayer.stop();
+        this.fieldMediaPlayer.release();
+        return false;
     }
 
     /*
