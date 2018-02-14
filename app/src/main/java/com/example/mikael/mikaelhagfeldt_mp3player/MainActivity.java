@@ -2,6 +2,7 @@ package com.example.mikael.mikaelhagfeldt_mp3player;
 
 import android.Manifest;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -16,6 +17,9 @@ import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity
 {
+    private Service fieldService;                                                                   // Åtkomst till klass Service där musiken spelas
+    private Intent fieldIntent;                                                                     // En intent för att överföra väsentlig data
+    private boolean fieldIsBound = false;                                                           // Hålla reda på om MAIN är kopplad till Service
     private ListView fieldListView;                                                                 // Musiken kommer att synas här
     private ArrayList<Music> fieldArrayList;                                                        // Musiken läggs in här
 
