@@ -49,6 +49,17 @@ public class Service extends android.app.Service implements MediaPlayer.OnPrepar
     }
 
     /*
+        Metoden som ser till att musik faktiskt spelas upp. Enligt Developer Android ska man helst
+        lägga i logiken för MediaPlayer inuti Service klassen, eftersom det är där logiken för
+        uppspelning ska ligga generellt.
+     */
+
+    public void playMusic()
+    {
+
+    }
+
+    /*
         Verkar inte vara samma onCreate() som i Main. Enligt post på stack så måste man använda metod
         från Service, instansiera MediaPlayer klassen och skapa en form av counter för att hålla koll
         på aktuellt index.
