@@ -10,6 +10,7 @@ import android.os.PowerManager;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -66,7 +67,14 @@ public class Service extends android.app.Service implements MediaPlayer.OnPrepar
         long localCurrentSong = localMusicFile.getFieldID();
         Uri localUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, localCurrentSong);
 
-        this.fieldMediaPlayer.setDataSource(getApplicationContext(), localUri);                     // Från Developer Android
+        try
+        {
+            this.fieldMediaPlayer.setDataSource(getApplicationContext(), localUri);                 // Från Developer Android
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     /*
