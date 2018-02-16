@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -101,6 +102,29 @@ public class MainActivity extends AppCompatActivity
             fieldIsBound = false;
         }
     };
+
+    /*
+        När applikationen "förstörs" så händer detta. Nollställer allting, avslutar Service.
+     */
+
+    @Override
+    protected void onDestroy()
+    {
+        stopService(this.fieldIntent);
+        this.fieldService = null;
+        super.onDestroy();
+    }
+
+    /*
+        Adapter klassen skickar data till denna metod, som därefter skickar datan vidare till
+        Service klassen.
+     */
+
+    public void pickASong(View paramView)
+    {
+        this.fieldService.songSetter(Integer.parseInt(paramView.getTag().toString()));
+        this.fieldService.playMusic();
+    }
 
     /*
         En metod för att hämta musikfilerna med ContentResolver, och använda Cursor
