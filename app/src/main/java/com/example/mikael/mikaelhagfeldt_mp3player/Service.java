@@ -65,6 +65,8 @@ public class Service extends android.app.Service implements MediaPlayer.OnPrepar
         Music localMusicFile = this.fieldList.get(this.fieldMusicIndex);
         long localCurrentSong = localMusicFile.getFieldID();
         Uri localUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, localCurrentSong);
+
+        this.fieldMediaPlayer.setDataSource(getApplicationContext(), localUri);                     // Från Developer Android
     }
 
     /*
