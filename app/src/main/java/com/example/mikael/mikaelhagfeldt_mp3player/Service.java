@@ -1,10 +1,13 @@
 package com.example.mikael.mikaelhagfeldt_mp3player;
 
+import android.content.ContentUris;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.IBinder;
 import android.os.PowerManager;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
@@ -52,11 +55,16 @@ public class Service extends android.app.Service implements MediaPlayer.OnPrepar
         Metoden som ser till att musik faktiskt spelas upp. Enligt Developer Android ska man helst
         lägga i logiken för MediaPlayer inuti Service klassen, eftersom det är där logiken för
         uppspelning ska ligga generellt.
+
+        Metoden hämtar aktuell låt, tar dess ID och kopplar denna till URI.
      */
 
     public void playMusic()
     {
-
+        this.fieldMediaPlayer.reset();                                                              // Startar alltid med en reset() eft. spela upp ny musik utan trubbel
+        Music localMusicFile = this.fieldList.get(this.fieldMusicIndex);
+        long localCurrentSong = localMusicFile.getFieldID();
+        Uri localUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, localCurrentSong);
     }
 
     /*
