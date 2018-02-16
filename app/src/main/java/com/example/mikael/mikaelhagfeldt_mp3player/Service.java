@@ -75,6 +75,8 @@ public class Service extends android.app.Service implements MediaPlayer.OnPrepar
         {
             e.printStackTrace();
         }
+
+        this.fieldMediaPlayer.prepareAsync();                                                       // Förbereder metoden för MediaPlayer objektet
     }
 
     /*
@@ -113,9 +115,17 @@ public class Service extends android.app.Service implements MediaPlayer.OnPrepar
         return false;
     }
 
+    public void songSetter(int paramMusicIndex)
+    {
+        this.fieldMusicIndex = paramMusicIndex;
+    }
+
     @Override
     public void onPrepared(MediaPlayer mediaPlayer)
     {
+        // Efter prepareASync() så skickas detta till onPrepared().
+
+        mediaPlayer.start();
     }
 
     /*
