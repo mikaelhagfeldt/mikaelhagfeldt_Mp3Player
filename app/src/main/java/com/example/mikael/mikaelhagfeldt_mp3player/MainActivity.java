@@ -13,6 +13,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
@@ -154,5 +157,31 @@ public class MainActivity extends AppCompatActivity
             }
             while (cursor.moveToNext());
         }
+    }
+
+    /*
+        Metod som gör att "stoppa applikationen" knappen fungerar.
+     */
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.action_stop:
+                stopService(this.fieldIntent);
+                this.fieldService = null;
+                System.exit(0);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.example_menu, menu);
+        return true;
     }
 }

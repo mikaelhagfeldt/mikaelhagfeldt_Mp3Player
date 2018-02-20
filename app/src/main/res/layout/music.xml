@@ -3,17 +3,25 @@
               android:onClick="pickASong"
               android:orientation="vertical"
               android:padding="7dp"
+              android:background="#0c0c0c"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/id_musicTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="19dp"
+        android:textColor="#b2b200"
+        />
 
     <TextView
         android:id="@+id/id_musicArtist"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textSize="17dp"
+        android:textColor="#b2b200"/>
 
 </LinearLayout>
+
